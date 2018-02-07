@@ -40,5 +40,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'mongoid', '~> 6.0'
+gem 'mongoid_search'
 gem "mongoid-paperclip"
 gem 'faker', '~> 1.8', '>= 1.8.7'

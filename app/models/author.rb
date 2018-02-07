@@ -10,7 +10,7 @@ class Author
   has_mongoid_attached_file :avatar
 
   # assciations
-  embeds_many :books
+  has_many :books
 
   # validations
   validates_presence_of :name

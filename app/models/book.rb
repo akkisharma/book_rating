@@ -1,5 +1,6 @@
 class Book
   include Mongoid::Document
+  include Mongoid::Search
 
   #fields
   field :name, type: String
@@ -10,8 +11,10 @@ class Book
   field :genres, type: Array
 
   # assciations
-  embedded_in :author
-	embeds_many :reviews
+  belongs_to :author
+	has_many :reviews
+
+  search_in :name, :genres, reviews: :reviewer, author: :name
 
   # validations
   validates_presence_of :name, :publish_date, :genres

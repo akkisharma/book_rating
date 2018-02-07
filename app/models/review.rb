@@ -8,7 +8,7 @@ class Review
   field :desc, type: String
 
   # assciations
-  embedded_in :book
+  belongs_to :book
 
   # validations
   validates_presence_of :reviewer, :rating

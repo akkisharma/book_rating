@@ -3,11 +3,9 @@ class Api::V1::BookRatingsController < ActionController::API
 	def author_books
 
 		begin
-			author_name = params[:author_name]
-			binding.pry
-			if author_name
-				author = Author.find_by(name: author_name)
-				books = author.books
+			# binding.pry
+			if params[:search].present?
+				books = Book.full_text_search(params[:search])
 				render json: {status: "SUCCESS",
 					data: books}, status: :ok
 			else

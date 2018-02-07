@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   		resources :book_ratings do
   			collection do
-  				post :author_books
+  				get :author_books
   				get :genre_books
   			end
   		end

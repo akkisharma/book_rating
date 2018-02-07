@@ -53,6 +53,7 @@ GEM
     erubi (1.7.0)
     faker (1.8.7)
       i18n (>= 0.7)
+    fast-stemmer (1.0.2)
     ffi (1.9.18)
     ffi (1.9.18-java)
     ffi (1.9.18-x64-mingw32)
@@ -86,6 +87,9 @@ GEM
     mongoid-paperclip (0.0.11)
       mongoid
       paperclip (>= 2.3.6, != 4.3.0)
+    mongoid_search (0.3.5)
+      fast-stemmer (~> 1.0.0)
+      mongoid (>= 3.0.0)
     nio4r (2.2.0)
     nio4r (2.2.0-java)
     nokogiri (1.8.2)
@@ -181,6 +185,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mongoid (~> 6.0)
   mongoid-paperclip
+  mongoid_search
   pry
   puma (~> 3.7)
   rails (~> 5.1.4)
