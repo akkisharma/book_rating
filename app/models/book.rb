@@ -6,7 +6,7 @@ class Book
   field :short_desc, type: String
   field :long_desc, type: String
   field :chapter_index, type: String
-  field :publish_date, type: String
+  field :publish_date, type: Date, default: (Date.today)
   field :genres, type: Array
 
   # assciations
@@ -14,7 +14,6 @@ class Book
 	has_many :reviews
 
   # validations
-  validates_presence_of :name, :short_desc, :publish_date, :genres
-  validates_length_of :name, minimum: 3
+  validates_presence_of :name, :publish_date, :genres
 
 end

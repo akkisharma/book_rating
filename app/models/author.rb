@@ -13,13 +13,14 @@ class Author
   has_many :books
 
   # validations
-  validates_presence_of :name, :bio
+  validates_presence_of :name
   validates_length_of :name, minimum: 3
+  validates_attachment_content_type :avatar, content_type: ['image/jpeg', 'image/png', 'application/jpg']
 
-  has_mongoid_attached_file :attachment,
+  has_mongoid_attached_file :avatar,
+    :default_url => "/default_avatar.png",
     :styles => {
-      :original => ['1920x1680>', :jpg],
-      :medium   => ['250x250',    :jpg]
+      :original => ['250x250', :jpg]
     }
 
 end

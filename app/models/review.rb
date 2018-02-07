@@ -13,6 +13,6 @@ class Review
   # validations
   validates_presence_of :reviewer, :rating
   validates :rating, inclusion: {in: 0..5}
-  validates_length_of :reviewer, minimum: 5
+  validates_length_of :reviewer, minimum: 3
 
 end
