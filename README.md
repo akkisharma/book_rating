@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+http://localhost:3000/api/v1/book_ratings/author_books?search=Elna O'Connell

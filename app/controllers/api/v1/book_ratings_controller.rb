@@ -3,18 +3,18 @@ class Api::V1::BookRatingsController < ActionController::API
 	def author_books
 
 		begin
-			# binding.pry
 			if params[:search].present?
-				books = Book.full_text_search(params[:search])
+				# binding.pry
+				books = Book.full_text_search(params[:search], match: :all)
 				render json: {status: "SUCCESS",
 					data: books}, status: :ok
 			else
 				render json: {status: "FAIL",
-					data: "Please provide author name"}, status: :ok
+					data: "Please provide search keyword"}, status: :ok
 			end
 		rescue
 			render json: {
-				error: "Please contact Service at sharma.akash1892@gmail.com for the selected destinations."
+				error: "Please contact service at sharma.akash1892@gmail.com for the selected destinations."
 			}
 		end
 	end

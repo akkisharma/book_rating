@@ -15,7 +15,7 @@ namespace :db do
 			avatar_url = Faker::Avatar.image("my_profile_image", "250x250", "jpg")
 			genre_names = ['Science fiction','Satire','Drama','Action and Adventure','Romance','Mystery','Horror','Self help','Fantasy']
 
-			1000.times do
+			20.times do
 
 				author = Author.new(
 					name:         Faker::Name.name,

@@ -23,6 +23,4 @@ class Author
       :original => ['250x250', :jpg]
   }
 
-  index({company_name: 'text', first_name: 'text', last_name: 'text' })
-
 end
