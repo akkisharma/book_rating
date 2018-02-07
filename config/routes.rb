@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   	namespace :v1 do
 
   		resources :book_ratings do
-  			get :book_by_author
-  			get :book_by_genre
+  			collection do
+  				post :author_books
+  				get :genre_books
+  			end
   		end
 
   	end

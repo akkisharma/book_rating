@@ -10,7 +10,7 @@ class Author
   has_mongoid_attached_file :avatar
 
   # assciations
-  has_many :books
+  embeds_many :books
 
   # validations
   validates_presence_of :name
@@ -21,6 +21,8 @@ class Author
     :default_url => "/default_avatar.png",
     :styles => {
       :original => ['250x250', :jpg]
-    }
+  }
+
+  index({company_name: 'text', first_name: 'text', last_name: 'text' })
 
 end

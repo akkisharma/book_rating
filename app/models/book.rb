@@ -10,8 +10,8 @@ class Book
   field :genres, type: Array
 
   # assciations
-  belongs_to :author
-	has_many :reviews
+  embedded_in :author
+	embeds_many :reviews
 
   # validations
   validates_presence_of :name, :publish_date, :genres
