@@ -1,11 +1,13 @@
 class Api::V1::BookRatingsController < ActionController::API
 
-	def author_books
+	def search_books
 
 		begin
-			if params[:search].present?
-				# binding.pry
-				books = Book.full_text_search(params[:search], match: :all)
+			search_params = params[:search].downcase
+
+			if search_params.present?
+				search_params = refactor_search_param
+				books = Book.full_text_search(search_params, match: :all)
 				render json: {status: "SUCCESS",
 					data: books}, status: :ok
 			else
@@ -19,22 +21,16 @@ class Api::V1::BookRatingsController < ActionController::API
 		end
 	end
 
-	def books_by_genre
-		begin
-			genre_name = Array(params[:genre_name])
-			if genre_name
-				books = Book.where(genre: genre_name)
-				render json: {status: "SUCCESS",
-					data: books}, status: :ok
-			else
-				render json: {status: "FAIL",
-					data: "Please provide genre name"}, status: :ok
-			end
-		rescue
-			render json: {
-				error: "Please contact Service at sharma.akash1892@gmail.com for the selected destinations."
-			}
-		end
+	private
+	def refactor_search_param
+		search_params = params[:search].downcase
+		search_params.slice! 'books'
+		search_params.slice! 'book'
+		search_params.slice! 'author'
+		search_params.slice! 'genres'
+		search_params.slice! 'genre'
+		search_params.strip!
+		search_params
 	end
 
 end
