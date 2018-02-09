@@ -17,6 +17,8 @@ gem 'puma', '~> 3.7'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'active_model_serializers'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -43,3 +45,5 @@ gem 'mongoid', '~> 6.0'
 gem 'mongoid_search'
 gem "mongoid-paperclip"
 gem 'faker', '~> 1.8', '>= 1.8.7'
+gem 'devise'
+gem 'simple_token_authentication', '~> 1.15', '>= 1.15.1'

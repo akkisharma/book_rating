@@ -15,51 +15,51 @@ namespace :db do
 			avatar_url = Faker::Avatar.image("my_profile_image", "250x250", "jpg")
 			genre_names = ['Science fiction','Satire','Drama','Action and Adventure','Romance','Mystery','Horror','Self help','Fantasy']
 
-			20.times do
-
+			# 1000.times do -- this will take 10 mins to get all records from faker
+			10.times do
 				author = Author.new(
-					name:         Faker::Name.name,
-					bio:          Faker::Lorem.paragraph(50),
-					academics:    Faker::Educator.course,
-					awards:       Faker::Educator.university,
-					avatar:       open(avatar_url)
+						name:         Faker::Name.name,
+						bio:          Faker::Lorem.paragraph(50),
+						academics:    Faker::Educator.course,
+						awards:       Faker::Educator.university,
+						avatar:       open(avatar_url)
 					)
-				# ensure the unique name validation
-				# if author.invalid?
-				# 		author_name = generate_unique_name(author) #replace new author name
-				# 		if author_name
-				# 			author.name = author_name
-				# 		else
-				# 			puts "----------------------------------------------------"
-				# 			puts "Faker tried fetching unique name more than 5 time..."
-				# 			puts "But didn't any new unique name"
-				# 		end
-				# 	end
+					# ensure the unique name validation
+					# if author.invalid?
+					# 		author_name = generate_unique_name(author) #replace new author name
+					# 		if author_name
+					# 			author.name = author_name
+					# 		else
+					# 			puts "----------------------------------------------------"
+					# 			puts "Faker tried fetching unique name more than 5 time..."
+					# 			puts "But didn't any new unique name"
+					# 		end
+					# 	end
 					author.save!
 
 				# 1000(author) * 5(books) = 5000(total books)
 				5.times do
 					random_genres = genre_names.shuffle.sample(rand(1..9))
 					book = author.books.new(
-						name:           Faker::Book.title,
-						short_desc:     Faker::Lorem.sentence(10),
-						long_desc:      Faker::Lorem.sentence(40),
-						chapter_index:  Faker::Lorem.sentence(60),
-						publish_date:   Faker::Date.backward(14),
-						genres:         random_genres
+							name:           Faker::Book.title,
+							short_desc:     Faker::Lorem.sentence(10),
+							long_desc:      Faker::Lorem.sentence(40),
+							chapter_index:  Faker::Lorem.sentence(60),
+							publish_date:   Faker::Date.backward(14),
+							genres:         random_genres
 						)
-					# ensure the unique name validation
-					# if book.invalid?
-					# 	book_name = generate_unique_name(book) #replace new book name
-					# 	if book_name
-					# 		book.name = book_name
-					# 	else
-					# 		puts "----------------------------------------------------"
-					# 		puts "Faker tried fetching unique name more than 5 time..."
-					# 		puts "But didn't any new unique name"
-					# 	end
-					# end
-					book.save!
+						# ensure the unique name validation
+						# if book.invalid?
+						# 	book_name = generate_unique_name(book) #replace new book name
+						# 	if book_name
+						# 		book.name = book_name
+						# 	else
+						# 		puts "----------------------------------------------------"
+						# 		puts "Faker tried fetching unique name more than 5 time..."
+						# 		puts "But didn't any new unique name"
+						# 	end
+						# end
+						book.save!
 
 					# 5000(books) * 25(reviews) = 25000(total reviews)
 					5.times do
@@ -73,6 +73,7 @@ namespace :db do
 					end
 				end
 			end
+			records_count
 		rescue Exception => e
 			handle_unique_record_exception(e)
 		end
@@ -113,6 +114,10 @@ namespace :db do
 
 	def handle_unique_record_exception(error)
 		puts "Exception handled: #{error}"
+		records_count
+	end
+
+	def	records_count
 		puts "------------------------------------------------------------------"
 		puts "There no more unique records available for Author or Book in Faker"
 		puts "Retrived:"
@@ -120,5 +125,6 @@ namespace :db do
 		puts "Book count: #{Book.count}"
 		puts "Review count: #{Review.count}"
 	end
+
 
 end

@@ -10,7 +10,7 @@ class Author
   has_mongoid_attached_file :avatar
 
   # assciations
-  has_many :books
+  has_many :books, dependent: :destroy
 
   # validations
   validates_presence_of :name
@@ -22,5 +22,9 @@ class Author
     :styles => {
       :original => ['250x250', :jpg]
   }
+
+  def author_details
+    self
+  end
 
 end

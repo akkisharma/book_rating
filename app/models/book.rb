@@ -12,11 +12,13 @@ class Book
 
   # assciations
   belongs_to :author
-	has_many :reviews
+	has_many :reviews, dependent: :destroy
 
   search_in :name, :genres, reviews: :reviewer, author: :name
 
   # validations
   validates_presence_of :name, :publish_date, :genres
+
+  delegate :author_details, to: :author
 
 end
